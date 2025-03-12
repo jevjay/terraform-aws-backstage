@@ -14,20 +14,20 @@ locals {
 # Create VPC if not provided
 module "vpc" {
   count = var.vpc_id == null ? 1 : 0
-  
+
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 5.0"
-  
+
   name = "${local.name_prefix}-vpc"
   cidr = var.vpc_cidr
-  
+
   azs             = var.availability_zones
   private_subnets = var.private_subnet_cidrs
   public_subnets  = var.public_subnet_cidrs
-  
+
   enable_nat_gateway = true
   single_nat_gateway = var.single_nat_gateway
-  
+
   tags = local.tags
 }
 
@@ -44,7 +44,7 @@ resource "aws_security_group" "backstage_alb" {
     protocol    = "tcp"
     cidr_blocks = var.alb_ingress_cidr_blocks
   }
-  
+
   ingress {
     description = "HTTPS ingress"
     from_port   = 443

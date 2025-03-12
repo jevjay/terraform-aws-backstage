@@ -25,7 +25,7 @@ resource "aws_s3_bucket_acl" "techdocs" {
 
 resource "aws_s3_bucket_versioning" "techdocs" {
   bucket = aws_s3_bucket.techdocs.id
-  
+
   versioning_configuration {
     status = var.techdocs_bucket_versioning ? "Enabled" : "Suspended"
   }

@@ -130,7 +130,7 @@ variable "database_credentials" {
   })
   default = {
     username = "backstage"
-    password = null  # Will be generated if not provided
+    password = null # Will be generated if not provided
   }
   sensitive = true
 }
